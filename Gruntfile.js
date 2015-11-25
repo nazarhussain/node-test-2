@@ -8,6 +8,11 @@ var COVERALLS = false;
 
 module.exports = function(grunt) {
   grunt.initConfig({
+    env: {
+      test: {
+          NODE_ENV: 'test'
+      }
+    },
     pkg: grunt.file.readJSON('package.json'),
     jshint: {
       options: { // see http://www.jshint.com/docs/options/
@@ -58,6 +63,7 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-env');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
 
@@ -70,12 +76,7 @@ module.exports = function(grunt) {
     process.env.multi = 'spec=- mocha-slow-reporter=test-results/slow.txt';
     grunt.config.set('mochaTest.lib.options.reporter', 'mocha-multi');
 
-    // needed so that mocha-multi doesn't kill the process
-    var program = require('mocha/node_modules/commander');
-    program.name = 'mocha';
-    program.exit = false;
-
-    grunt.task.run(['build', 'mochaTest', 'covreport']);
+    grunt.task.run(['env', 'mochaTest', 'covreport']);
     if (process.env.TRAVIS) {
       grunt.config.set('mochaTest.lib.options.reporter', 'mocha-unfunk-reporter');
       if (COVERALLS) {
@@ -118,5 +119,5 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['build']);
+  grunt.registerTask('default', ['env', 'build']);
 };
