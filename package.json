@@ -42,8 +42,8 @@
   },
   "peerDependencies": {},
   "dependencies": {
+    "bluebird": "^3.0.5",
     "cheerio": "^0.19.0",
     "convict": "^1.0.1",
-    "rsvp": "^3.1.0"
   }
 }
