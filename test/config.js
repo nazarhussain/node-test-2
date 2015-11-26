@@ -11,6 +11,6 @@ describe('The enviornment configuration', function(){
   });
 
   it('should have default port 8080', function(){
-    expect(conf.get('port')).to.eql(8080);
+    expect(conf.get('port')).to.eql(8181);
   });
 });

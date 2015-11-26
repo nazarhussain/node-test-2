@@ -38,6 +38,7 @@
     "mocha-multi": "^0.7.2",
     "mocha-slow-reporter": "0.0.0",
     "mocha-unfunk-reporter": "~0.4.0",
+    "zombie": "~4.2.1",
     "rimraf": "~2.4.4"
   },
   "peerDependencies": {},
